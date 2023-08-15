@@ -73,7 +73,7 @@ let isFinished = false;
 
 function pickPuzzle() {
   let puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-  return puzzle;
+  return puzzle.slice(); // return a copy of the puzzle if we dont slice it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
 }
 
 let puzzle = pickPuzzle();
