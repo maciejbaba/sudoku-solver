@@ -245,4 +245,4 @@ setInterval(() => {
       isFinished = true;
     }
   }
-}, 5000);
+}, 1000);
