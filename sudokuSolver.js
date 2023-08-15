@@ -40,7 +40,34 @@ let puzzle6 = createArray(
   "428...635....2.......4.3...9....8.2....54..............8.......................73"
 );
 
-let puzzles = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5, puzzle6];
+let puzzle7 = createArray(
+  "837529614491637..5.651.837.5.69147.89.875..62374.8659115386..4774239...668947...3"
+);
+
+let puzzle8 = createArray(
+  "6123.4578397..51428.4172963941236857238759.1.76.418.39...5.3.........3.55.3.2...."
+);
+
+let puzzle9 = createArray(
+  "4.5......83....27.7.........9.432...2416..5933..159............9.4....3.1........"
+);
+
+let puzzle10 = createArray(
+  ".1.5..7......9....32..6..4.......3.....72..68.9..............3.......18.........."
+);
+
+let puzzles = [
+  puzzle1,
+  puzzle2,
+  puzzle3,
+  puzzle4,
+  puzzle5,
+  puzzle6,
+  puzzle7,
+  puzzle8,
+  puzzle9,
+  puzzle10,
+];
 
 let isFinished = false;
 
