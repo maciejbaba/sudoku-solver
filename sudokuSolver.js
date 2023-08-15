@@ -72,6 +72,7 @@ function markSolved() {
   let cells = document.querySelectorAll(".sudoku__cell");
   cells.forEach((cell) => {
     if (cell.textContent != 0) cell.classList.add("solved");
+    if (cell.textContent == 0) cell.classList.remove("solved");
   });
 }
 
