@@ -6,7 +6,7 @@ This is a sudoku solver written in Javascript. It uses a backtracking algorithm 
 It was done for fun and to learn more about backtracking algorithms, that blow my mind.
 
 ## How to use
-Live version: link
+Live version: https://sudoku-solver-teal.vercel.app/
 
 To run it locally, clone the repository and open the index.html file in your browser.
 
