@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku</title>
+    <script src="./sudokuSolver.js" defer></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: "Courier New", Courier, monospace;
+        background-color: black;
+        color: lightgreen;
+      }
+      .sudoku {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        column-gap: 0px;
+        height: 70vh;
+        width: 60vw;
+      }
+      .sudoku__cell {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+        padding: 0.5rem;
+        border: 1px solid green;
+      }
+      .solved {
+        background-color: darkslategrey;
+      }
+      .sudoku__cell-top-left {
+        border-top-left-radius: 1rem;
+      }
+      .sudoku__cell-top-right {
+        border-top-right-radius: 1rem;
+      }
+      .sudoku__cell-bottom-left {
+        border-bottom-left-radius: 1rem;
+      }
+      .sudoku__cell-bottom-right {
+        border-bottom-right-radius: 1rem;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sudoku"></div>
+  </body>
+</html>
