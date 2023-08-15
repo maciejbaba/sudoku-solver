@@ -33,7 +33,14 @@
         font-size: 1.4rem;
         font-weight: 700;
         padding: 0.5rem;
+        transition: all 0.2s ease-in-out;
         border: 1px solid green;
+      }
+      .sudoku__cell:nth-child(3n):not(:last-child) {
+        border-bottom: 3px solid green;
+      }
+      .row:nth-child(3n):not(:last-child) {
+        border-right: 3px solid green;
       }
       .solved {
         background-color: darkslategrey;
@@ -49,12 +56,6 @@
       }
       .sudoku__cell-bottom-right {
         border-bottom-right-radius: 1rem;
-      }
-
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
       }
     </style>
   </head>
