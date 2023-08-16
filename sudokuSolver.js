@@ -73,7 +73,7 @@ let isFinished = false;
 
 function pickPuzzle() {
   let puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-  return puzzle.slice(); // return a copy of the puzzle if we dont slice it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
+  return puzzle.map((x) => x); // return a copy of the puzzle if we dont do it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
 }
 
 let puzzle = pickPuzzle();
@@ -139,7 +139,10 @@ function sudoku(puzzle) {
 
   async function solve(puzzle) {
     let empty = isEmpty(puzzle);
-    if (!empty) return puzzle;
+    if (!empty) {
+      isFinished = true;
+      return puzzle;
+    }
     let [row, col] = empty;
     for (let i = 0; i < options.length; i++) {
       puzzle[row][col] = options[i];
@@ -149,7 +152,6 @@ function sudoku(puzzle) {
         await sleep(100);
         let result = await solve(puzzle);
         if (result) {
-          isFinished = true;
           return result;
         }
       }
@@ -224,25 +226,5 @@ setInterval(() => {
     puzzle = pickPuzzle();
     isFinished = false;
     startNewGame();
-  }
-}, 1000);
-
-let count = 0;
-let temp;
-let temp2;
-
-// super hack to check if the puzzle is solved, because isFinished sometimes doesn't work for some reason
-setInterval(() => {
-  count++;
-  if (count % 2 == 1) {
-    temp = puzzle.slice().join("").replace(/,/g, "");
-  }
-  if (count % 2 == 0) {
-    temp2 = puzzle.slice().join("").replace(/,/g, "");
-  }
-  if (temp && temp2) {
-    if (temp == temp2) {
-      isFinished = true;
-    }
   }
 }, 1000);
