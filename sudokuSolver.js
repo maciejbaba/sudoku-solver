@@ -73,7 +73,7 @@ let isFinished = false;
 
 function pickPuzzle() {
   let puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-  return puzzle.map((x) => x); // return a copy of the puzzle if we dont do it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
+  return puzzle.map((arr) => arr.map((item) => item)); // return a copy of the puzzle if we dont do it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
 }
 
 let puzzle = pickPuzzle();
