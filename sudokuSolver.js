@@ -56,28 +56,6 @@ let puzzle10 = createArray(
   ".1.5..7......9....32..6..4.......3.....72..68.9..............3.......18.........."
 );
 
-let puzzles = [
-  puzzle1,
-  puzzle2,
-  puzzle3,
-  puzzle4,
-  puzzle5,
-  puzzle6,
-  puzzle7,
-  puzzle8,
-  puzzle9,
-  puzzle10,
-];
-
-let isFinished = false;
-
-function pickPuzzle() {
-  let puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-  return puzzle.map((arr) => arr.map((item) => item)); // return a copy of the puzzle if we dont do it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
-}
-
-let puzzle = pickPuzzle();
-
 function createArray(sudokuString) {
   let sudokuArray = [];
   let row = [];
@@ -95,39 +73,25 @@ function createArray(sudokuString) {
   return sudokuArray;
 }
 
+let puzzles = [
+  puzzle1,
+  puzzle2,
+  puzzle3,
+  puzzle4,
+  puzzle5,
+  puzzle6,
+  puzzle7,
+  puzzle8,
+  puzzle9,
+  puzzle10,
+];
+
 function markSolved() {
   let cells = document.querySelectorAll(".sudoku__cell");
   cells.forEach((cell) => {
     if (cell.textContent != 0) cell.classList.add("solved");
     if (cell.textContent == 0) cell.classList.remove("solved");
   });
-}
-
-function createSudoku() {
-  for (let i = 0; i < 9; i++) {
-    let row = document.createElement("div");
-    row.classList.add("row");
-    for (let j = 0; j < 9; j++) {
-      let cell = document.createElement("div");
-      if (i == 0 && j == 0) cell.classList.add("sudoku__cell-top-left");
-      if (i == 8 && j == 0) cell.classList.add("sudoku__cell-top-right");
-      if (i == 0 && j == 8) cell.classList.add("sudoku__cell-bottom-left");
-      if (i == 8 && j == 8) cell.classList.add("sudoku__cell-bottom-right");
-      cell.classList.add("sudoku__cell");
-      cell.setAttribute("id", `${i}${j}`);
-      row.appendChild(cell);
-    }
-    board.appendChild(row);
-  }
-}
-
-function renderSudoku(puzzle) {
-  for (let i = 0; i < puzzle.length; i++) {
-    for (let j = 0; j < puzzle[i].length; j++) {
-      let cell = document.getElementById(`${i}${j}`);
-      cell.textContent = puzzle[i][j];
-    }
-  }
 }
 
 function sleep(ms) {
@@ -210,17 +174,51 @@ function checkArr(arr) {
   return true;
 }
 
+function createSudoku() {
+  for (let i = 0; i < 9; i++) {
+    let row = document.createElement("div");
+    row.classList.add("row");
+    for (let j = 0; j < 9; j++) {
+      let cell = document.createElement("div");
+      if (i == 0 && j == 0) cell.classList.add("sudoku__cell-top-left");
+      if (i == 8 && j == 0) cell.classList.add("sudoku__cell-top-right");
+      if (i == 0 && j == 8) cell.classList.add("sudoku__cell-bottom-left");
+      if (i == 8 && j == 8) cell.classList.add("sudoku__cell-bottom-right");
+      cell.classList.add("sudoku__cell");
+      cell.setAttribute("id", `${i}${j}`);
+      row.appendChild(cell);
+    }
+    board.appendChild(row);
+  }
+}
+
+function renderSudoku(puzzle) {
+  for (let i = 0; i < puzzle.length; i++) {
+    for (let j = 0; j < puzzle[i].length; j++) {
+      let cell = document.getElementById(`${i}${j}`);
+      cell.textContent = puzzle[i][j];
+    }
+  }
+}
+
+let puzzle = pickPuzzle();
+let isFinished = true;
+
+createSudoku();
+renderSudoku(puzzle);
+
+function pickPuzzle() {
+  let puzzle = puzzles[Math.floor(Math.random() * puzzles.length)]; // 2d array
+  return puzzle.map((row) => row.map((value) => value)); // return a copy of the puzzle if we dont do it, the original puzzle will be modified and sudoku after solving all the puzzles will stop working
+}
+
 function startNewGame() {
   renderSudoku(puzzle);
   markSolved();
   sudoku(puzzle);
 }
 
-isFinished = true;
-
-createSudoku();
-renderSudoku(puzzle);
-
+// game loop
 setInterval(() => {
   if (isFinished) {
     puzzle = pickPuzzle();
